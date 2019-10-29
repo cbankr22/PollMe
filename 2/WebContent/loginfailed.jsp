@@ -8,6 +8,6 @@ Login failed nigga! Username taken!
 Go Back: 
 <input type="submit" value="Submit" /> 
 
-</form>>
+</form>
 </body>
 </html>

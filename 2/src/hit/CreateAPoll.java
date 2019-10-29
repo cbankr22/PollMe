@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.xdevapi.Statement;
+
 
 @WebServlet("/CreateAPoll")
 public class CreateAPoll extends HttpServlet {
@@ -29,7 +31,8 @@ public class CreateAPoll extends HttpServlet {
   	Connection conn = null;
   	conn =
 	   	        DriverManager.getConnection("jdbc:mysql://localhost/test1?" +
-	   	                                    "user=root&password=colin2003");
+	   	                                "user=root&password=colin2003");
+  	
   	String username = null;
 	HttpSession session=request.getSession(false);  
     if(session != null){  
@@ -37,16 +40,16 @@ public class CreateAPoll extends HttpServlet {
     username = (String) session.getAttribute("name");
     
     }
-
+    
       // Create a SQL query to insert data into demo table 
       // demo table consists of two columns, so two '?' is used 
   	
-      final String SQL_INSERT = "INSERT INTO polls (username, pollname, side1, side2) VALUES (?,?,?,?)";
+      final String SQL_INSERT = "INSERT INTO polls ( username, pollname, side1, side2) VALUES (?,?,?,?)";
 	    PreparedStatement st = conn.prepareStatement(SQL_INSERT); 
       // For the first parameter, 
       // get the data using request object 
       // sets the data to st pointer 
-	   
+	    
 	    String pollname = request.getParameter("pollname");
 	    String side1 = request.getParameter("side1");
 	    String side2 = request.getParameter("side2");
@@ -56,6 +59,7 @@ public class CreateAPoll extends HttpServlet {
 	    request.getRequestDispatcher("ShowCreatedPoll.jsp").forward(request, response);
 
       // Same for second parameter 
+	 
       st.setString(1, username); 
       
       st.setString(2, pollname);

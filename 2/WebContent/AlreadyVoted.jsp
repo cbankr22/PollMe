@@ -3,7 +3,11 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 
+<header>
 
+You silly goose! You have already voted for that poll!
+
+</header>
 <h2 align="center"><font><strong>Retrieve data from database in jsp</strong></font></h2>
 <table align="center" cellpadding="5" cellspacing="5" border="1">
 <tr>

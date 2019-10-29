@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,22 +30,21 @@ public class InsertData extends HttpServlet {
       	conn =
   	   	        DriverManager.getConnection("jdbc:mysql://localhost/test1?" +
   	   	                                    "user=root&password=colin2003");
-        
-
-          // Create a SQL query to insert data into demo table 
-          // demo table consists of two columns, so two '?' is used 
+     
+      
       	
           final String SQL_INSERT = "INSERT INTO vibe (username, password) VALUES (?,?)";
   	    PreparedStatement st = conn.prepareStatement(SQL_INSERT); 
           // For the first parameter, 
           // get the data using request object 
           // sets the data to st pointer 
-  	   
+  	    
   	    String username = request.getParameter("username");
   	    String password = request.getParameter("password");
           
 
           // Same for second parameter 
+  	      
           st.setString(1, username); 
           
           st.setString(2, password);

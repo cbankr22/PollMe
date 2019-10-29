@@ -55,6 +55,7 @@ public class CheckUsername extends HttpServlet {
                 {
                 	HttpSession session = request.getSession();
                 	session.setAttribute("name", username);
+                	session.setAttribute("password", password);
                 	
                 	response.sendRedirect("loginsuccess.html");
                 	
@@ -66,10 +67,7 @@ public class CheckUsername extends HttpServlet {
                 
             }
             
-            // Get a writer pointer  
-            // to display the successful result 
-           
-            
+          
         } 
         catch (Exception e) { 
             e.printStackTrace(); 
