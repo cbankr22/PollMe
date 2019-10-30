@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/PlusOneToPoll")
 public class PlusOneToPoll extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -49,6 +50,9 @@ try {
     		int side2votes = Integer.parseInt(Sside2votes);
     		int userid = 0;
     		
+    		
+    		int i = 1;
+    		
     		HttpSession session=request.getSession(false);  
     		
             username = (String) session.getAttribute("name");
@@ -65,6 +69,8 @@ try {
                 
                 if(rs.next()) {
                 	userid = rs.getInt(1);
+                	
+                	
                 }
                 
                 String query2 = "SELECT * FROM pollsvoted WHERE pollid = '" + id + "' AND usernameid = '" + userid + "';";

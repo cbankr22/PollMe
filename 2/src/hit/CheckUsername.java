@@ -38,6 +38,7 @@ public class CheckUsername extends HttpServlet {
     	    PreparedStatement ps;
     	    ResultSet rs;
     	   
+    	    int userid = 1;
     	    String username = request.getParameter("username");
     	    String password = request.getParameter("password");
             String query = "SELECT * FROM `vibe` WHERE `username` =? AND `password` =?";
@@ -53,10 +54,11 @@ public class CheckUsername extends HttpServlet {
                 
                 if(rs.next())
                 {
+                	userid = rs.getInt(1);
                 	HttpSession session = request.getSession();
                 	session.setAttribute("name", username);
                 	session.setAttribute("password", password);
-                	
+                	session.setAttribute("userid", userid);
                 	response.sendRedirect("loginsuccess.html");
                 	
                 }
