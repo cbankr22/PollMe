@@ -60,8 +60,7 @@ try {
             String query = "SELECT * FROM vibe WHERE username = '" + username + "';";
            
             
-            System.out.println("hello");
-            System.out.println(username);
+            
             
                 ps = conn.prepareStatement(query);
                 rs = ps.executeQuery();
@@ -80,9 +79,9 @@ try {
                 
                 if(rs2.next()) {
                 	voted = true;
-                	System.out.println("Already voted");
+                	
                 } else {
-                	System.out.println("Voted!");
+                	
                 	voted = false;
                 }
     	
@@ -92,8 +91,9 @@ try {
     		if(sidepicked.equals(side2)) {
     			side2votes++;
     		}
+    		int totalvotes = side1votes + side2votes;
     		
-            final String SQL_INSERT = "UPDATE polls SET side1votes = " + side1votes + ", side2votes = " + side2votes + " WHERE id = " + id + " ";
+            final String SQL_INSERT = "UPDATE polls SET side1votes = " + side1votes + ", side2votes = " + side2votes + ", totalvotes = "+ totalvotes + " WHERE id = " + id + " ";
       	    PreparedStatement st = conn.prepareStatement(SQL_INSERT); 
            
       	    

@@ -28,7 +28,7 @@ try{
 	   	        DriverManager.getConnection("jdbc:mysql://localhost/test1?" +
 	   	                                    "user=root&password=colin2003");
 Statement statement = conn.createStatement();
-String sql ="SELECT * FROM polls";
+String sql ="SELECT * FROM polls ORDER BY totalvotes DESC";
 
 ResultSet resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
