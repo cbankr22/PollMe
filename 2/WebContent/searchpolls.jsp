@@ -6,10 +6,11 @@
 <html>
 <head>
 <link rel="stylesheet" href="tables.css" type = "text/css">
-You silly goose! You already voted for that poll!
 </head>
 <body>
+
 <div id="background">
+
 <form action="searchpolls.jsp" id = "form">
 Search for a poll 
 <input type="text" name="searchresult">
@@ -22,6 +23,7 @@ Search by username
 <input type="text" name="searchresult">
 <input type="submit" value="Submit" />
 </form>
+
 <table class="greenTable">
 <thead>
 <tr>
@@ -36,17 +38,28 @@ Search by username
 <%
 try{ 
 	
-	
+	String search = request.getParameter("searchresult");
 	
 	
   	Connection conn =
 	   	        DriverManager.getConnection("jdbc:mysql://localhost/test1?" +
 	   	                                    "user=root&password=colin2003");
 Statement statement = conn.createStatement();
-String sql ="SELECT * FROM polls ORDER BY totalvotes DESC";
+String sql ="SELECT * FROM polls WHERE pollname LIKE '%"+search+"%' or side1 LIKE '%"+search+"%' or side2 LIKE '%"+search+"%' ORDER BY totalvotes DESC";
 
 ResultSet resultSet = statement.executeQuery(sql);
-while(resultSet.next()){
+if(resultSet.next() == false){
+%>
+<tbody>
+<tr>
+	<td> No polls found. </td>
+</tr>
+</tbody>
+	
+	
+<% 
+} else {
+do {
 %>
 
 <tbody>
@@ -87,7 +100,7 @@ Vote for <%=resultSet.getString("side2") %>
 </tbody>
 
 <% 
-
+} while(resultSet.next());
 }
 } catch (Exception e) {
 e.printStackTrace();
@@ -102,9 +115,17 @@ e.printStackTrace();
 </tfoot>
 </table>
 <form action="loginsuccess.html">
-<button type="submit">
-Go back!
-</button>
+
+Go Back: 
+<input type="submit" value="Back to home" /> 
+
+</form>
+
+<form action="ShowAllPolls.jsp">
+
+View all: 
+<input type="submit" value="View all" /> 
+
 </form>
 </div>
 </body>

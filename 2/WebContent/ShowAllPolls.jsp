@@ -3,21 +3,37 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 
+<html>
+<head>
+<link rel="stylesheet" href="tables.css" type = "text/css">
+</head>
+<body>
+<div id="background">
 
-<h2 align="center"><font><strong>Retrieve data from database in jsp</strong></font></h2>
-<table align="center" cellpadding="5" cellspacing="5" border="1">
+<form action="searchpolls.jsp" id = "form">
+Search for a poll 
+<input type="text" name="searchresult">
+<input type="submit" value="Submit" />
+
+</form>
+
+<form action="searchpollsbyusername.jsp" id = "form">
+Search by username
+<input type="text" name="searchresult">
+<input type="submit" value="Submit" />
+</form>
+
+<table class="greenTable">
+<thead>
 <tr>
-
+<th>Username</th>
+<th>Pollname</th>
+<th>Side 1</th>
+<th>Side 2</th>
+<th>Side 1 votes</th>
+<th>Side 2 votes</th>
 </tr>
-<tr bgcolor="#A52A2A">
-
-<td><b>Username</b></td>
-<td><b>Pollname</b></td>
-<td><b>Side 1</b></td>
-<td><b>Side 2</b></td>
-<td><b>Side 1 votes</b></td>
-<td><b>Side 2 votes</b></td>
-</tr>
+</thead>
 <%
 try{ 
 	
@@ -33,13 +49,13 @@ String sql ="SELECT * FROM polls ORDER BY totalvotes DESC";
 ResultSet resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
-<tr bgcolor="#DEB887">
 
-
+<tbody>
+<tr>
 <td><%=resultSet.getString("username") %></td>
 <td><%=resultSet.getString("pollname") %></td>
-<td
-><form action="PlusOneToPoll" method="post">
+<td>
+<form action="PlusOneToPoll" method="post">
 <input type="hidden"  name="pollid" value=<%=resultSet.getString("id") %>>
 <input type="hidden"  name="username" value=<%=resultSet.getString("username") %>>
 <input type="hidden"  name="pollname" value=<%=resultSet.getString("pollname") %>>
@@ -68,8 +84,9 @@ Vote for <%=resultSet.getString("side2") %>
 </form></td>
 <td><%=resultSet.getString("side1votes") %></td>
 <td><%=resultSet.getString("side2votes") %></td>
-
 </tr>
+</tbody>
+
 <% 
 }
 
@@ -77,6 +94,13 @@ Vote for <%=resultSet.getString("side2") %>
 e.printStackTrace();
 }
 %>
+<tfoot>
+<tr>
+<td colspan="6">
+<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+</td>
+</tr>
+</tfoot>
 </table>
 <form action="loginsuccess.html">
 
@@ -84,3 +108,7 @@ Go Back:
 <input type="submit" value="Back to home" /> 
 
 </form>
+</form>
+</div>
+</body>
+</html>
