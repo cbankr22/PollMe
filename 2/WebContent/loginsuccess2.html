@@ -1,0 +1,67 @@
+<html> 
+	<head> 
+		<link rel="stylesheet" href="mainpage.css" type = "text/css">
+		<title>Successfully signed in!</title> 
+	</head> 
+		
+		<body> 
+
+	<div class="login-page">
+ 	<div id="rectangle">
+	<div id="form-wrapper">
+
+		<div id="form1">
+		<form action="recentpolls.jsp" id ="button1">
+		<button type="submit" class="floated" id="button">View recent polls!</button>
+		</form>
+		</div>
+
+		<div id="form2">
+		<form action="ShowAllPolls.jsp" >
+		<button type="submit" class="floated" id="button">View polls!</button>
+		</form>
+		</div>
+
+		<div id="form3">
+		<form action="ViewPollsVotedOn" method="post">
+		<button type="submit" class="floated" id="button">View polls you've voted on!</button>
+		</form>
+		</div>
+
+		<div id="form4">
+		<form action="ViewYourOwnPolls" method="post">
+		<button type="submit" class="floated" id="button">View your own polls!</button>
+		</form>
+		</div>
+
+		<div id="form5">
+		<form action="Logout" method="post">
+		<button type="submit" class="floated" id="button">Logout!</button>
+		</form>
+		</div>
+		</div>
+		</div>
+		
+		
+		
+ 			<div class="form">	
+ 			Poll created!
+ 			<br></br>
+ 			<form action="CreateAPoll" method="post">
+  			
+  			<input type="text" id="pollname" name="pollname" placeholder="Poll name" required>
+  
+  			<input type="text" id="side1" name="side1" placeholder="Side 1" required>
+  
+  			<input type="text" id="side2" name="side2" placeholder="Side 2" required>
+  
+  			<button>
+  			Submit!
+  			</button>
+      
+     
+			</form>
+		</div>
+		</div>
+	</body> 
+</html> 
