@@ -45,7 +45,7 @@ public class CreateAPoll extends HttpServlet {
       // Create a SQL query to insert data into demo table 
       // demo table consists of two columns, so two '?' is used 
   	
-      final String SQL_INSERT = "INSERT INTO polls (userid, username, pollname, side1, side2) VALUES (?,?,?,?,?)";
+      final String SQL_INSERT = "INSERT INTO polls (userid, username, pollname, side1, side2, polltime) VALUES (?,?,?,?,?, NOW())";
 	    PreparedStatement st = conn.prepareStatement(SQL_INSERT); 
       // For the first parameter, 
       // get the data using request object 
@@ -56,9 +56,7 @@ public class CreateAPoll extends HttpServlet {
 	    String side2 = request.getParameter("side2");
 
 
-	    request.setAttribute("pollname", pollname);
-	    request.getRequestDispatcher("ShowCreatedPoll.jsp").forward(request, response);
-
+	    
       // Same for second parameter 
 	  st.setInt(1, id);
       st.setString(2, username); 
@@ -71,13 +69,13 @@ public class CreateAPoll extends HttpServlet {
       st.executeUpdate(); 
       //find last id
      
-    
+      
       
       // Close all the connections 
       st.close(); 
       conn.close(); 
       
-      
+      response.sendRedirect("loginsuccess2.html");
       
   } 
 	catch (Exception e) { 

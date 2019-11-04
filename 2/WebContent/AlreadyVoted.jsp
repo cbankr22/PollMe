@@ -6,10 +6,10 @@
 <html>
 <head>
 <link rel="stylesheet" href="tables.css" type = "text/css">
-You silly goose! You already voted for that poll!
 </head>
 <body>
 <div id="background">
+
 <form action="searchpolls.jsp" id = "form">
 Search for a poll 
 <input type="text" name="searchresult">
@@ -22,8 +22,13 @@ Search by username
 <input type="text" name="searchresult">
 <input type="submit" value="Submit" />
 </form>
+<div id="scrolltable">
 <table class="greenTable">
 <thead>
+<tr>
+<th>Most popular polls</th>
+<th>You have already voted for that poll!</th>
+</tr>
 <tr>
 <th>Username</th>
 <th>Pollname</th>
@@ -53,8 +58,8 @@ while(resultSet.next()){
 <tr>
 <td><%=resultSet.getString("username") %></td>
 <td><%=resultSet.getString("pollname") %></td>
-<td
-><form action="PlusOneToPoll" method="post">
+<td>
+<form action="PlusOneToPoll" method="post">
 <input type="hidden"  name="pollid" value=<%=resultSet.getString("id") %>>
 <input type="hidden"  name="username" value=<%=resultSet.getString("username") %>>
 <input type="hidden"  name="pollname" value=<%=resultSet.getString("pollname") %>>
@@ -87,25 +92,23 @@ Vote for <%=resultSet.getString("side2") %>
 </tbody>
 
 <% 
-
 }
+
 } catch (Exception e) {
 e.printStackTrace();
 }
 %>
 <tfoot>
-<tr>
-<td colspan="6">
-<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
-</td>
-</tr>
 </tfoot>
 </table>
+</div>
 <form action="loginsuccess.html">
-<button type="submit">
-Go back!
-</button>
+
+Go Back: 
+<input type="submit" value="Back to home" /> 
+
 </form>
+
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <html> 
 	<head> 
 		<link rel="stylesheet" href="poo.css" type = "text/css">
-		<title>Sign up</title> 
+		<title>Log in!</title> 
 		
 	</head> 
 <body> 
@@ -12,24 +12,24 @@
   <h1>PollMe!</h1>
   
   <div class="form">	
-   	
+   		
    	 <br/><br/>
     
-	 <form class="login-form" action="CheckUsername" method="post">
+	 <form class="login-form" action="CheckUsername" method="post" >
 	 
-      <input type="text" placeholder="username" name ="username"/>
+      <input type="text" placeholder="username" name ="username" required/>
       
-      <input type="password" placeholder="password" name = "password"/>
+      <input type="password" placeholder="password" name = "password" required/>
       
       <button>Login!</button>
       
      
     </form>
      <form class="login-form" action="InsertData" method="post">
-	 
-      <input type="text" placeholder="username" name ="username"/>
+	  
+      <input type="text" pattern=".{3,}" required title="3 characters minimum" placeholder="username" maxlength="10" name ="username" required/>
       
-      <input type="password" placeholder="password" name = "password"/>
+      <input type="password" pattern=".{3,}" required title="3 characters minimum" placeholder="password" maxlength="10" name = "password" required/>
       
       <button>Sign up!</button>
       
@@ -39,6 +39,8 @@
     </div>
 </body> 
 </html> 
+
+
 
 
 

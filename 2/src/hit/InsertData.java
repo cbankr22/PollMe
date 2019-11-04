@@ -63,9 +63,7 @@ public class InsertData extends HttpServlet {
           
           // Get a writer pointer  
           // to display the successful result 
-          PrintWriter out = response.getWriter(); 
-          out.println("<html><body><b>Successfully Signed up! <br/><br/> "  + "<br/><br/> Username: " + username + "<br/><br/> Password: " + password
-                      + "  <br/><br/><form action=\"ss.html\"><input type=\"submit\" value=\"Go Back\" /></form></b></body></html>"); 
+          response.sendRedirect("ss2.html");
       } 
       catch (Exception e) { 
           e.printStackTrace(); 

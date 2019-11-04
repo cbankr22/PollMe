@@ -22,9 +22,12 @@ Search by username
 <input type="text" name="searchresult">
 <input type="submit" value="Submit" />
 </form>
-
+<div id="scrolltable">
 <table class="greenTable">
 <thead>
+<tr>
+<th>Most popular polls</th>
+</tr>
 <tr>
 <th>Username</th>
 <th>Pollname</th>
@@ -95,20 +98,16 @@ e.printStackTrace();
 }
 %>
 <tfoot>
-<tr>
-<td colspan="6">
-<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
-</td>
-</tr>
 </tfoot>
 </table>
+</div>
 <form action="loginsuccess.html">
 
 Go Back: 
 <input type="submit" value="Back to home" /> 
 
 </form>
-</form>
+
 </div>
 </body>
 </html>

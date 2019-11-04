@@ -25,6 +25,7 @@ head{
 	
 	
 }
+
 table.greenTable {
   font-family: Arial, Helvetica, sans-serif;
   border: 6px solid #24943A;
@@ -90,7 +91,7 @@ table.greenTable button {
   background: #4CAF50;
   width: 100%;
   border: 0;
-  padding: 10px 24px;
+  padding: 2px 3px;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
@@ -117,4 +118,13 @@ input[type=button], input[type=submit] {
   border-style: solid;
   border-width: 2px;
   border-color: white;
+}
+#scrolltable { 
+     margin-top: 20px; 
+     height: 400px; 
+     overflow: auto;
+}
+#scrolltable th div {
+     position: absolute; 
+     margin-top: -20px;
 }

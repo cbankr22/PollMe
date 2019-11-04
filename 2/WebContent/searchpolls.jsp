@@ -1,6 +1,6 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 
 <html>
@@ -23,7 +23,7 @@ Search by username
 <input type="text" name="searchresult">
 <input type="submit" value="Submit" />
 </form>
-
+<div id="scrolltable">
 <table class="greenTable">
 <thead>
 <tr>
@@ -44,10 +44,13 @@ try{
   	Connection conn =
 	   	        DriverManager.getConnection("jdbc:mysql://localhost/test1?" +
 	   	                                    "user=root&password=colin2003");
-Statement statement = conn.createStatement();
-String sql ="SELECT * FROM polls WHERE pollname LIKE '%"+search+"%' or side1 LIKE '%"+search+"%' or side2 LIKE '%"+search+"%' ORDER BY totalvotes DESC";
+  	PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM polls WHERE pollname LIKE ? or side1 LIKE ? or side2 LIKE ? ORDER BY totalvotes DESC");
 
-ResultSet resultSet = statement.executeQuery(sql);
+String searchWizard = "%" + search + "%";
+preparedStatement.setString(1, searchWizard);
+preparedStatement.setString(2, searchWizard);
+preparedStatement.setString(3, searchWizard);
+ResultSet resultSet = preparedStatement.executeQuery();
 if(resultSet.next() == false){
 %>
 <tbody>
@@ -108,12 +111,11 @@ e.printStackTrace();
 %>
 <tfoot>
 <tr>
-<td colspan="6">
-<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
-</td>
+
 </tr>
 </tfoot>
 </table>
+</div>
 <form action="loginsuccess.html">
 
 Go Back: 

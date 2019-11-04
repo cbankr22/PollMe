@@ -3,21 +3,26 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 
+<html>
+<head>
+<link rel="stylesheet" href="tables.css" type = "text/css">
+</head>
+<body>
+<div id="background">
 
-<h2 align="center"><font><strong>Retrieve data from database in jsp</strong></font></h2>
-<table align="center" cellpadding="5" cellspacing="5" border="1">
+
+<div id="scrolltable">
+<table class="greenTable">
+<thead>
 <tr>
 
+<th>Pollname</th>
+<th>Side 1</th>
+<th>Side 2</th>
+<th>Side 1 votes</th>
+<th>Side 2 votes</th>
 </tr>
-<tr bgcolor="#A52A2A">
-
-<td><b>Username</b></td>
-<td><b>Pollname</b></td>
-<td><b>Side 1</b></td>
-<td><b>Side 2</b></td>
-<td><b>Side 1 votes</b></td>
-<td><b>Side 2 votes</b></td>
-</tr>
+</thead>
 <%
 try{ 
 	
@@ -33,10 +38,8 @@ String sql ="SELECT * FROM polls WHERE userid = '" + id + "'";
 ResultSet resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
-<tr bgcolor="#DEB887">
-
-
-<td><%=resultSet.getString("username") %></td>
+<tbody>
+<tr>
 <td><%=resultSet.getString("pollname") %></td>
 <td><%=resultSet.getString("side1") %></td>
 <td><%=resultSet.getString("side2") %></td>
@@ -44,6 +47,7 @@ while(resultSet.next()){
 <td><%=resultSet.getString("side2votes") %></td>
 
 </tr>
+</tbody>
 <% 
 }
 
@@ -51,10 +55,15 @@ while(resultSet.next()){
 e.printStackTrace();
 }
 %>
+
 </table>
+</div>
 <form action="loginsuccess.html">
 
 Go Back: 
 <input type="submit" value="Back to home" /> 
 
 </form>
+</div>
+</body>
+</html>
